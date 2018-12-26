@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sec.project.domain.Signup;
 import sec.project.repository.SignupRepository;
 import org.springframework.security.core.Authentication;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import org.springframework.ui.Model;
 
 @Controller
 public class DefaultController {
@@ -26,8 +28,9 @@ public class DefaultController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String submitForm(@RequestParam String name, @RequestParam String address) {
+    public String submitForm(Model model, @RequestParam String name, @RequestParam String address) {
         signupRepository.save(new Signup(name, address));
+        model.addAttribute("address", signupRepository.findAll().get(0).getAddress());
         return "done";
     }
 

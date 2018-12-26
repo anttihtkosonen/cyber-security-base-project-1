@@ -20,14 +20,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private AccountRepository accountRepository;
 
-//    private Map<String, String> accountDetails;
-
     @PostConstruct
     public void init() {
         Account account = new Account();
         
-        // username and password is "ted"
-        account.setUsername("ted");
+        account.setUsername("jonne");
         account.setPassword("$2a$10$nKOFU.4/iK9CqDIlBkmMm.WZxy2XKdUSlImsG8iKsAP57GMcXwLTS");
         accountRepository.save(account);
     }
